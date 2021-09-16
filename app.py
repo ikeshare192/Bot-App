@@ -12,7 +12,7 @@ model = pickle.load(open('model', 'rb'))
 def hello():
     return 'Hello World'
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET','POST'])
 @cross_origin()
 
 #function for getting and sending a response to dialogflow
@@ -23,6 +23,8 @@ def webhook():
     res = processRequest(req)
 
     res = json.dumps(res, indent=4)
+
+    #print(res)
 
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
