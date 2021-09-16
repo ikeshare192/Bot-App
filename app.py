@@ -4,8 +4,14 @@ import json
 import pickle
 from flask_cors import cross_origin 
 
-app=flask(__name__)
-model = pickle.load(open('model.pickle', 'rb'))
+app = Flask(__name__)
+model = pickle.load(open('model', 'rb'))
+
+'''
+@app.route('/')
+def hello():
+    return 'Hello World'
+'''
 
 @app.route('/webhook', methods=['POST'])
 @cross_origin()
@@ -63,3 +69,11 @@ def processRequest(req):
         
 if __name__ == "__main__":
     app.run()
+
+'''
+if __name__ == '__main__':
+    port = int(os.getenv('PORT', 5000))
+    print("Starting app on port %d" % port)
+    app.run(debug=False, port=port, host='0.0.0.0')
+
+'''
