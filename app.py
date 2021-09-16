@@ -45,7 +45,7 @@ def processRequest(req):
 
     intent = result.get("inent").get("displayName")
 
-    if intent == 'IrisData':
+    if (intent == 'IrisData'):
         prediction = model.predict(final_features)
 
         output = round(prediction[0],2)
