@@ -7,11 +7,10 @@ from flask_cors import cross_origin
 app = Flask(__name__)
 model = pickle.load(open('model', 'rb'))
 
-'''
+
 @app.route('/')
 def hello():
     return 'Hello World'
-'''
 
 @app.route('/webhook', methods=['POST'])
 @cross_origin()
