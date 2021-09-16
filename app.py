@@ -5,7 +5,7 @@ import pickle
 from flask_cors import cross_origin 
 
 app=flask(__name__)
-model = pickle.load(open('rf.pickle', 'rb'))
+model = pickle.load(open('model.pickle', 'rb'))
 
 @app.route('/webhook', methods=['POST'])
 @cross_origin()
@@ -23,6 +23,7 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
+#function for processing the request from dialogflow
 def processRequest(req):
     
     result = req.get("queryResult")
@@ -34,3 +35,36 @@ def processRequest(req):
     Sepal_length = parameters.get("number2")
     Sepal_width = parameters.get("number3")
     int_features = [Petal_length, Petal_width, Sepal_length, Sepal_width]
+
+    final_features = [np.array(int_features)]
+
+    intent = result.get("inent").get("displayName")
+
+    if intent == 'IrisData':
+        prediction = model.predict(final_features)
+
+        output = round(prediction[0],2)
+
+
+        if(output==0):
+            flower = 'Setosa'
+
+        if(output==1):
+            flower = 'Versicolor'
+
+        if(output==2):
+            flower = 'Virginica'
+
+        fulfillmentText = "The Iris type seems to be... {} !".format(flower)
+
+        return {
+            "fulfillmentText":fulfillmentText
+        }
+        
+#if __name__ == "__main__":
+    #app.run()
+
+if __name__ == '__main__':
+    port = int(os.getenv('PORT', 5000))
+    print("Starting app on port %d" % port)
+    app.run(debug=False, port=port, host='0.0.0.0')
