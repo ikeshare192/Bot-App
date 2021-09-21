@@ -15,14 +15,6 @@ def hello():
 @app.route('/webhook', methods=['POST'])
 #@cross_origin()
 
-'''
-@app.route('/webhook', methods=['POST'])
-def webhook():
-  return {
-        "fulfillmentText": 'This is from the webhook',
-        "source": 'webhook'
-    }
-'''
 
 #function for getting and sending a response to dialogflow
 def webhook():
