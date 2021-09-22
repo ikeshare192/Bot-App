@@ -12,8 +12,17 @@ model = pickle.load(open('model', 'rb'))
 def hello():
     return 'Hello World'
 
-@app.route('/webhook', methods=['POST'])
+#@app.route('/webhook', methods=['POST'])
 #@cross_origin()
+
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+  return {
+        "fulfillmentText": 'This is from the webhook',
+        "source": 'webhook'
+    }
+
 
 
 #function for getting and sending a response to dialogflow
@@ -25,6 +34,11 @@ def webhook():
    
     parameters = result.get("parameters")
 
+    return{
+        "fulfillmentText": parameters
+    }
+
+'''
     Petal_length = parameters.get("number")
     Petal_width = parameters.get("number1")
     Sepal_length = parameters.get("number2")
@@ -55,6 +69,7 @@ def webhook():
         return {
             "fulfillmentText":fulfillmentText
         }
+'''
 
 if __name__ == "__main__":
     app.run()
