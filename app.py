@@ -37,8 +37,12 @@ def webhook():
     Sepal_width = parameters.get("number3")
     int_features = [Petal_length, Petal_width, Sepal_length, Sepal_width]
 
+    model_features = [np.array(int_features)]
+
+    intent = result.get("intent").get("displayName")
+
     return{
-        "fulfillmentText": str(int_features)
+        "fulfillmentText": intent
     }
 
 '''
