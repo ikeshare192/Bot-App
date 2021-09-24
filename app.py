@@ -41,20 +41,16 @@ def webhook():
 
     intent = result.get("intent").get("displayName")
 
+    if (intent == 'IrisData'):
+
+        prediction = model.predict(model_features)
+        output = round(prediction[0],2)
+
     return{
-        "fulfillmentText": intent
+        "fulfillmentText": output
     }
 
 '''
-    Petal_length = parameters.get("number")
-    Petal_width = parameters.get("number1")
-    Sepal_length = parameters.get("number2")
-    Sepal_width = parameters.get("number3")
-    int_features = [Petal_length, Petal_width, Sepal_length, Sepal_width]
-
-    final_features = [np.array(int_features)]
-
-    intent = result.get("inent").get("displayName")
 
     if (intent == 'IrisData'):
         prediction = model.predict(final_features)
