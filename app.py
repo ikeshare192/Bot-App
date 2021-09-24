@@ -40,7 +40,7 @@ def webhook():
 
     int_features = [Petal_length, Petal_width, Sepal_length, Sepal_width]
 
-    model_features = [[int_features]]
+    model_features = [int_features]
 
     intent = result.get("intent").get("displayName")
 
