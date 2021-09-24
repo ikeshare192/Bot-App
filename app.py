@@ -41,7 +41,9 @@ def webhook():
 
         if output == 0:
             flower = 'Setosa'
-
+            image = "https://www.gardenia.net/storage/app/public/uploads/images/detail/sAnMmr80jfbvc9qs043R1tDHBC5TDPUUaYJoi0yO.jpeg"
+            
+            
         if output == 1:
             flower = 'Versicolor'
 
@@ -49,7 +51,7 @@ def webhook():
             flower = 'Virginica'
 
         return{
-            "fulfillmentText":"The Iris type is predicted to be ...{}".format(flower),
+            "fulfillmentText":"The Iris type is predicted to be ...{}".format(flower, image),
             "source":"webhook"
         }
 
