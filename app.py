@@ -12,15 +12,6 @@ load_model = pickle.load(open('model', 'rb'))
 def hello():
     return 'Hello World'
 
-'''
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    return {
-        "fulfillmentText": "I hope this works now",
-        "source":"webhook"
-    }
-'''
-
 @app.route('/webhook', methods=['POST'])
 def webhook():
 
@@ -58,45 +49,9 @@ def webhook():
             flower = 'Virginica'
 
         return{
-            "fulfillmentText":str(flower),
+            "fulfillmentText":"The Iris type is predicted to be ...{}".format(flower),
             "source":"webhook"
         }
-
-'''
-    if (intent == 'IrisData'):
-
-        #prediction = load_model.predict(model_features)
-        #output = round(prediction[0],2)
-
-        return{
-            "fulfillmentText":model_features,
-            "source":"webhook"
-        }
-'''
-
-'''
-    if (intent == 'IrisData'):
-        prediction = model.predict(final_features)
-
-        output = round(prediction[0],2)
-
-
-        if(output==0):
-            flower = 'Setosa'
-
-        if(output==1):
-            flower = 'Versicolor'
-
-        if(output==2):
-            flower = 'Virginica'
-
-        fulfillmentText = "The Iris type seems to be... {} !".format(flower)
-
-        return {
-            "fulfillmentText":fulfillmentText
-        }
-
-'''
 
 if __name__ == "__main__":
     app.run()
