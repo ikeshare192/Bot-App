@@ -12,14 +12,13 @@ load_model = pickle.load(open('model', 'rb'))
 def hello():
     return 'Hello World'
 
+'''
 @app.route('/webhook', methods=['POST'])
 def webhook():
     return {
         "fulfillmentText": "I hope this works now",
         "source":"webhook"
     }
-
-
 '''
 
 @app.route('/webhook', methods=['POST'])
@@ -41,6 +40,12 @@ def webhook():
 
     intent = result.get("intent").get("displayName")
 
+    return{
+        "fulfillmentText":str(model_features),
+        "source":"webhook"
+    }
+    
+'''
     if (intent == 'IrisData'):
 
         #prediction = load_model.predict(model_features)
@@ -50,8 +55,9 @@ def webhook():
             "fulfillmentText":model_features,
             "source":"webhook"
         }
+'''
 
-
+'''
     if (intent == 'IrisData'):
         prediction = model.predict(final_features)
 
