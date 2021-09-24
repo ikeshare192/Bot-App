@@ -4,7 +4,8 @@ import json
 import pickle
 
 app = Flask(__name__)
-model = pickle.load(open('model', 'rb'))
+
+load_model = pickle.load(open('model', 'rb'))
 
 
 @app.route('/')
@@ -42,7 +43,7 @@ def webhook():
 
     if (intent == 'IrisData'):
 
-        prediction = model.predict(model_features)
+        prediction = load_model.predict(model_features)
         output = round(prediction[0],2)
 
         return{
