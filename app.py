@@ -44,12 +44,14 @@ def webhook():
 
     intent = result.get("intent").get("displayName")
 
+    if (intent=='IrisData'):
+        prediction = load_model.predict(model_features)
+        output = (prediction[0])
 
-
-    return{
-        "fulfillmentText":str(model_features),
-        "source":"webhook"
-    }
+        return{
+            "fulfillmentText":(output),
+            "source":"webhook"
+        }
 
 '''
     if (intent == 'IrisData'):
