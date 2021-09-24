@@ -49,7 +49,7 @@ def webhook():
         output = (prediction[0])
 
         return{
-            "fulfillmentText":(output),
+            "fulfillmentText":str(output),
             "source":"webhook"
         }
 
