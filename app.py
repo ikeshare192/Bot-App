@@ -45,9 +45,9 @@ def webhook():
         prediction = model.predict(model_features)
         output = round(prediction[0],2)
 
-    return{
-        "fulfillmentText": output
-    }
+        return{
+            "fulfillmentText": output
+        }
 
 '''
 
