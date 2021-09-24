@@ -37,7 +37,7 @@ def webhook():
         #output = round(prediction[0],2)
 
         return{
-            "fulfillmentText": intent
+            "fulfillmentText": intent, model_features
         }
 
 '''
