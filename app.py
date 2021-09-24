@@ -14,6 +14,16 @@ def hello():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
+    return {
+        "fulfillmentText": "I hope this works now",
+        "source":"webhook"
+    }
+
+
+'''
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
 
     req = request.get_json(silent=True, force=True)
     
@@ -41,7 +51,6 @@ def webhook():
             "source":"webhook"
         }
 
-'''
 
     if (intent == 'IrisData'):
         prediction = model.predict(final_features)
@@ -63,6 +72,7 @@ def webhook():
         return {
             "fulfillmentText":fulfillmentText
         }
+
 '''
 
 if __name__ == "__main__":
