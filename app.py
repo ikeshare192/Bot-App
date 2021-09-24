@@ -31,17 +31,23 @@ def webhook():
     parameters = result.get("parameters")
 
     Petal_length = parameters.get("number")
+
     Petal_width = parameters.get("number1")
+
     Sepal_length = parameters.get("number2")
+
     Sepal_width = parameters.get("number3")
+
     int_features = [Petal_length, Petal_width, Sepal_length, Sepal_width]
 
     model_features = [[int_features]]
 
     intent = result.get("intent").get("displayName")
 
+
+
     return{
-        "fulfillmentText":model_features,
+        "fulfillmentText":str(model_features)
         "source":"webhook"
     }
 
