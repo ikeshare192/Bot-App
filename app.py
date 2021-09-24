@@ -48,8 +48,17 @@ def webhook():
         prediction = load_model.predict(model_features)
         output = (prediction[0])
 
+        if output == 0:
+            flower = 'Setosa'
+
+        if output == 1:
+            flower = 'Versicolor'
+
+        if output == 2:
+            flower = 'Virginica'
+
         return{
-            "fulfillmentText":str(output),
+            "fulfillmentText":str(flower),
             "source":"webhook"
         }
 
