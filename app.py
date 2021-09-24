@@ -47,7 +47,7 @@ def webhook():
 
 
     return{
-        "fulfillmentText":str(model_features)
+        "fulfillmentText":str(model_features),
         "source":"webhook"
     }
 
