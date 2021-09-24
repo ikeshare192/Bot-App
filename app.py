@@ -12,17 +12,7 @@ load_model = pickle.load(open('model', 'rb'))
 def hello():
     return 'Hello World'
 
-'''
 @app.route('/webhook', methods=['POST'])
-def webhook():
-  return {
-        "fulfillmentText": 'This is from the webhook',
-        "source": 'webhook'
-    }
-'''
-
-@app.route('/webhook', methods=['POST'])
-#function for getting and sending a response to dialogflow
 def webhook():
 
     req = request.get_json(silent=True, force=True)
@@ -43,11 +33,11 @@ def webhook():
 
     if (intent == 'IrisData'):
 
-        prediction = load_model.predict(model_features)
-        output = round(prediction[0],2)
+        #prediction = load_model.predict(model_features)
+        #output = round(prediction[0],2)
 
         return{
-            "fulfillmentText": output
+            "fulfillmentText": intent
         }
 
 '''
